@@ -1,0 +1,24 @@
+{
+    "algorithm": "ASTRA-OGD",
+    "parameters":{
+        "sats_per_plane": [16, 14, 34, 15, 42, 32, 39, 44, 24, 38, 56, 19, 48, 38, 38, 40, 14, 37, 31, 34, 30, 47, 20, 36, 20, 32, 19, 18, 22, 32, 64, 28, 47, 31, 17, 30, 35, 36, 35, 19, 26, 32, 39, 37, 18, 46, 43, 37, 28, 14],
+        "num_planes": 50,
+        "max_isl": 4,
+        "max_bsl": 0,
+        "num_bs": 0,
+        "max_dist": 0.8,
+        "T": 10000,
+        "rho": 1,
+        "tau": -0.45,
+        "lambda_bs": 1e-4,
+        "lambda_sat": 1e-4,
+        "eps": 1e-7,
+        "funs_to_use": ["long_dist", "sat_dist"],
+        "weights": [0.6, 0.4],
+        "cone": 0,
+        "projected_its": 20,
+        "admm_iters": 100000,
+        "lr": 0.1,
+        "verbose": 0
+    }
+}

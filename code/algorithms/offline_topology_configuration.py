@@ -88,7 +88,7 @@ def laplacian_matrix_with_utilities(sats_pos, weights, funs_to_use, max_isl, max
     if verbose:
         print(mat_sol)
         print(np.linalg.matrix_rank(mat_sol))
-    return mat_sol, sats_pos, [prob.solver_stats.num_iters, prob.solver_stats.solve_time, prepro_time], P #TODO:remove
+    return mat_sol, sats_pos, [prob.solver_stats.num_iters, prob.solver_stats.solve_time, prepro_time]
 
 
 def mip_topology_with_utilities(sats_pos, new_weights, funs_to_use, max_isl, max_dist, sats_per_plane, num_planes,

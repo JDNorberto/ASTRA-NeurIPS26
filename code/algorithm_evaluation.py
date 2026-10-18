@@ -538,7 +538,7 @@ def plot_regret_mip_online(runs):
         pos = move_constellation(pos, 11, 6).reshape(-1, 3)
 
     astra_ogd_sols = admm_online_gradient_descent(runs, 50_000, X_one, uts, M, positions, 0, max_isl,
-                                                  0, max_dist, 1, np.sqrt(9393)/np.sqrt(runs), cone=cone)
+                                                  0, max_dist, 1, np.sqrt(939.3)/np.sqrt(runs), cone=cone)
 
     astra_ocg_sols = admm_online_conditional_gradient(runs, 50_000, X_one, uts, M, positions, 0, max_isl,
                                                   0, max_dist, 1, cone=cone)
@@ -596,7 +596,7 @@ if __name__ == "__main__":
     # ablation_projected_its([5, 10, 20, 30, 40, 50, 60])
     # ablation_rho_app()
     # evaluate_on_iridium()
-    evaluate_on_starlink_data()
+    # evaluate_on_starlink_data()
     # evaluate_online_algorithms_starlink()
     # plot_regret_mip_online(100)
 

@@ -63,8 +63,6 @@ def get_true_preds_and_positions(runs, a, b, num_sat, bs, sats_per_plane, cs_sat
 
         if 300 < i < 650:
             sats = np.delete(sats_pos, sats_rem, axis=0)
-        #elif i >= 350:
-        #    sats[sats_rem] += [0.05, 0.05, 0.05] #TODO: here we add new positions
         positions.append(sats)
         X, _, _ = laplacian_matrix_with_utilities(sats, new_weights, funs_to_use, max_isls, max_dist,
                                                   num_sat=num_sat, num_bs=num_bs, cone=cone, verbose=False,
