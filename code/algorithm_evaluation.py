@@ -226,7 +226,7 @@ def ablation_lambda_app():
     t = -0.5
     max_dist = 0.8
     weight_list = [[0, 1], [0.15, 0.85], [0.30, 0.70], [0.45, 0.55],
-                   [0.60, 0.40], [0.75, 0.25], [0.90, 0.10], [1, 0]]
+                   [0.60, 0.40], [0.75, 0.25], [0.90, 0.10]]
     for w in weight_list:
         print("Current weights: ", w)
         s = time.time()
@@ -593,6 +593,7 @@ if __name__ == "__main__":
     # plot_regret_curve(1000)
     # get_times()
     # plot_multiple_seed_sat_rem(3)
+    # ablation_lambda_app()
     # ablation_projected_its([5, 10, 20, 30, 40, 50, 60])
     # ablation_rho_app()
     # evaluate_on_iridium()
