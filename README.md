@@ -1,39 +1,58 @@
+
 # ASTRA-NeurIPS26
 
-This repo contains the code for the paper "ASTRA: ADMM-Accelerated Topology Reconfiguration for Dynamic Satellite Constellations".
+This repository contains the code for the paper **"ASTRA: ADMM-Accelerated Topology Reconfiguration for Dynamic Satellite Constellations."**
 
-The packages used to run this code are: <br>
+## Dependencies
 
-- numpy 2.4.3
+The following packages are required to run the code:
 
-- cvxpy 1.8.1
+- `numpy==2.4.3`
+- `cvxpy==1.8.1`
+- `networkx==3.6.1`
+- `scipy==1.17.1`
 
-- networkx 3.6.1
+## Repository Structure
 
-- scipy 1.17.1
+The code is organized as follows:
 
-The code is divided as follows:
+### `code/`
 
-- code, should be marked as a source directory (PyCharm: Settings -> Project Structure -> select code dir and mark as source).
+The `code` directory should be marked as a **source directory**.
 
-  - constellation_info, contains the information necessary to run some experiments on Starlink data.
+In PyCharm, go to **Settings → Project Structure**, select the `code` directory, and mark it as a source directory.
 
-  - pickle_files, contains pickled files to make plots quicker.
+- **`constellation_info/`** — Contains the information necessary to run some experiments on Starlink data.
 
-  - algorithms, contains the code for GUTO and ASTRA.
+- **`pickle_files/`** — Contains pickled files to make plotting faster.
 
-    - admm_topology_configuration.py, contains both Online and Offline ASTRA algorithms.
+- **`algorithms/`** — Contains the implementations of GUTO and ASTRA.
+  - `admm_topology_configuration.py` — Contains both the online and offline ASTRA algorithms.
+  - `offline_topology_configuration/` — Contains GUTO.
+  - `sota.py` — Contains the implementations of +Grid and xGrid.
+  - `tc_utils.py` — Contains various utility functions for topology configuration.
 
-    - offline_topology_configuration, contains GUTO.
+- **`graph_analysis.py`** — Contains all graph-related methods.
 
-    - sota.py, contains the implementations for +Grid and xGrid.
+- **`satellite_simulation.py`** — Used to generate an Iridium-like constellation.
 
-    - tc_utils.py, contains a plethora of methods that are useful for topology configuration.
+- **`utility_functions.py`** — Contains all implemented utility functions.
 
-  - algorithm_evaluation.py, the main file where experiments can be executed.
+- **`algorithm_evaluation.py`** — Contains the code used for the main experiments presented in the paper.
 
-  - graph_analysis.py, contains all graph-related methods.
+- **`main.py`** — Runs the proposed algorithms using user-specified positions and parameters.
 
-  - satellite_simulation.py, used to generate an Iridium-like constellation.
+## Running the Algorithms
 
-  - utility_functions.py, contains all the implemented utility functions.
+If you want to run the code to replicate the experiments of the paper, you should refer to **`algorithm_evaluation.py`**. In case you want to test different parameters or different constellations, the `main.py` script should be called as follows:
+
+```bash
+python main.py --cf <config-file> --pf <position-file>
+```
+
+The position file should contain normalized positions between 0 and 1. When using **online algorithms**, two additional arguments are required:
+
+- `--u <utility-file>` — Specifies the file containing all precomputed utility matrices.
+- `--fs <first-solution>` — Specifies the initial topology to be considered.
+
+The provided `config_file.json` should be used to specify the algorithm parameters.
