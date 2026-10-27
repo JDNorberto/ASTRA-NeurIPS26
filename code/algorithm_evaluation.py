@@ -569,22 +569,23 @@ def plot_regret_mip_online(runs):
     greens = cm.Greens([0.6, 0.9])  # light, dark
 
     plt.plot(np.arange(len(ogd_regret)), ogd_regret,
-             label="MiP-ASTRA-OGD", color=purples[0])
+             label="GUROBI-ASTRA-OGD", color=purples[0])
 
     plt.plot(np.arange(len(ogd_g_regret)), ogd_g_regret,
              label="GUTO-ASTRA-OGD", color=purples[1])
 
     plt.plot(np.arange(len(ocg_regret)), ocg_regret,
-             label="MiP-ASTRA-OCG", color=greens[0])
+             label="GUROBI-ASTRA-OCG", color=greens[0])
 
     plt.plot(np.arange(len(ocg_g_regret)), ocg_g_regret,
              label="GUTO-ASTRA-OCG", color=greens[1])
-    plt.tight_layout()
     plt.title("Regret comparisons of ASTRA Online and GUROBI")
     plt.xticks(np.arange(0, runs+10, 10))
     plt.xlabel("Iteration")
     plt.ylabel("Regret")
     plt.legend()
+    plt.tight_layout()
+    plt.savefig("mip_regret_comparisons.pdf")
     plt.show()
 
 
