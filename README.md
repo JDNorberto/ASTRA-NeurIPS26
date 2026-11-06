@@ -1,7 +1,7 @@
 
 # ASTRA-NeurIPS26
 
-This repository contains the code for the paper **"ASTRA: ADMM-Accelerated Topology Reconfiguration for Dynamic Satellite Constellations."**
+This repository contains the code for the paper **"ASTRA: ADMM-Accelerated Topology Reconfiguration for Dynamic Satellite Constellations."** [(Project page)](https://astraonlinelearning.github.io/)
 
 ## Dependencies
 
