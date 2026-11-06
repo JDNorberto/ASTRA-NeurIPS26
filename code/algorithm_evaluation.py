@@ -589,6 +589,39 @@ def plot_regret_mip_online(runs):
     plt.show()
 
 
+def iridium_full_precision_comparison():
+    pos = generate_constellation(0.85, 0.75, 11, 6).reshape(-1, 3)
+    sats_per_plane = np.repeat(11, 6)
+    funs_to_use = ["long_dist", "sat_dist"]
+    weights = [0.6, 0.4]
+    max_isl = 4
+    max_dist = 0.8
+
+    eps = 2e-14
+
+    GUTO_times = []
+    ASTRA_times = []
+    for i in range(10):
+        s = time.time()
+        gmat, _, _ = laplacian_matrix_with_utilities(pos, weights, funs_to_use, max_isl, max_dist, sats_per_plane,
+                                                     len(sats_per_plane), 0, eps=eps, cone=False, verbose=False)
+        GUTO_times.append(time.time() - s)
+
+        s = time.time()
+        amat = admm_offline(pos, 0, 1, 1, 1e-4, max_isl, 0, max_dist, 100_000,
+                           ["long_dist", "sat_dist"], sats_per_plane, len(sats_per_plane), cone=False,
+                           weights=weights, projected_its=5, eps=eps)
+        ASTRA_times.append(time.time() - s)
+
+        amat_sol = []
+        for i in range(len(amat)):
+            row = list(map(lambda val: round(float(val), 4), amat[i]))
+            amat_sol.append(row)
+        amat_sol = np.array(amat_sol)
+        print("Difference in solutions: ", np.linalg.norm(amat_sol - gmat, "fro"))
+    print(f"Mean GUTO time {np.mean(GUTO_times)}, STD GUTO time {np.std(GUTO_times)}")
+    print(f"Mean ASTRA time {np.mean(ASTRA_times)}, STD ASTRA time {np.std(ASTRA_times)}")
+
 if __name__ == "__main__":
     np.set_printoptions(legacy='1.25')
     # plot_regret_curve(1000)
@@ -601,4 +634,5 @@ if __name__ == "__main__":
     # evaluate_on_starlink_data()
     # evaluate_online_algorithms_starlink()
     # plot_regret_mip_online(100)
+    # iridium_full_precision_comparison()
 
