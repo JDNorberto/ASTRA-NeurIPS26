@@ -611,13 +611,14 @@ def iridium_full_precision_comparison():
         amat = admm_offline(pos, 0, 1, 1, 1e-4, max_isl, 0, max_dist, 100_000,
                            ["long_dist", "sat_dist"], sats_per_plane, len(sats_per_plane), cone=False,
                            weights=weights, projected_its=5, eps=eps)
-        ASTRA_times.append(time.time() - s)
 
         amat_sol = []
         for i in range(len(amat)):
             row = list(map(lambda val: round(float(val), 4), amat[i]))
             amat_sol.append(row)
         amat_sol = np.array(amat_sol)
+        ASTRA_times.append(time.time() - s)
+
         print("Difference in solutions: ", np.linalg.norm(amat_sol - gmat, "fro"))
     print(f"Mean GUTO time {np.mean(GUTO_times)}, STD GUTO time {np.std(GUTO_times)}")
     print(f"Mean ASTRA time {np.mean(ASTRA_times)}, STD ASTRA time {np.std(ASTRA_times)}")
